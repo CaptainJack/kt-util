@@ -4,12 +4,12 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 object Delegates {
-	fun <T> observableChange(initialValue: T, onChange: (newValue: T) -> Unit): ReadWriteProperty<Any?, T> {
-		return ChangeObservableProperty(initialValue, onChange)
+	fun <T> observableChange(value: T, onChange: (T) -> Unit): ReadWriteProperty<Any?, T> {
+		return ChangeObservableProperty(value, onChange)
 	}
 	
-	fun <T> observableChange(initialValue: T, onChange: () -> Unit): ReadWriteProperty<Any?, T> {
-		return ChangeObservableProperty(initialValue) { onChange() }
+	fun <T> observableChange(value: T, onChange: () -> Unit): ReadWriteProperty<Any?, T> {
+		return ChangeObservableProperty(value) { onChange() }
 	}
 	
 	private class ChangeObservableProperty<T>(

@@ -25,7 +25,6 @@ inline fun <T> Iterable<T>.sumByLong(selector: (T) -> Long): Long {
 }
 
 fun <T> MutableCollection<T>.set(elements: Collection<T>) {
-	val oldElements = toList()
-	removeAll(oldElements)
+	clear()
 	addAll(elements)
 }

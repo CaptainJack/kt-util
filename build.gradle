@@ -17,7 +17,13 @@ capjackBintray {
 
 kotlin {
 	targets {
-		fromPreset(presets.jvm, 'jvm') { compilations.all { tasks[compileKotlinTaskName].kotlinOptions { jvmTarget = '1.8' } } }
+		fromPreset(presets.jvm, 'jvm') {
+			compilations.all {
+				tasks[compileKotlinTaskName].kotlinOptions { 
+					jvmTarget = '1.8' 
+				}
+			}
+		}
 		fromPreset(presets.js, 'js')
 	}
 	
