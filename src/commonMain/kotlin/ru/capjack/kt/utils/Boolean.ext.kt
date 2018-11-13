@@ -10,10 +10,10 @@ inline fun Boolean.onFalse(block: () -> Unit): Boolean {
 	return this
 }
 
-inline fun Boolean.letTrue(block: () -> Boolean): Boolean {
-	return if (this) block() else false
+inline fun <T> Boolean.letTrue(block: () -> T): T? {
+	return if (this) block() else null
 }
 
-inline fun Boolean.letFalse(block: () -> Boolean): Boolean {
-	return if (!this) block() else true
+inline fun <T> Boolean.letFalse(block: () -> T): T? {
+	return if (!this) block() else null
 }
