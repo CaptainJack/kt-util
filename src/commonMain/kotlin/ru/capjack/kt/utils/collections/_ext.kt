@@ -28,3 +28,20 @@ fun <T> MutableCollection<T>.set(elements: Collection<T>) {
 	clear()
 	addAll(elements)
 }
+
+fun MutableCollection<Int>.set(elements: IntArray) {
+	clear()
+	for (element in elements) {
+		add(element)
+	}
+}
+
+expect fun IntArray.set(elements: IntArray)
+
+fun IntArray.set(elements: Array<Int>) {
+	set(elements.toIntArray())
+}
+
+fun IntArray.set(elements: List<Int>) {
+	set(elements.toIntArray())
+}
