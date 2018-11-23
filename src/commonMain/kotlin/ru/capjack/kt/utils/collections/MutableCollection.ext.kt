@@ -17,13 +17,6 @@ fun <E> MutableCollection<in E>.addAsCancelable(elements: Collection<E>): Cancel
 	return Cancelable { removeAll(elements) }
 }
 
-
-inline fun <T> Iterable<T>.sumByLong(selector: (T) -> Long): Long {
-	var sum = 0L
-	for (element in this) sum += selector(element)
-	return sum
-}
-
 fun <T> MutableCollection<T>.set(elements: Collection<T>) {
 	clear()
 	addAll(elements)
@@ -34,14 +27,4 @@ fun MutableCollection<Int>.set(elements: IntArray) {
 	for (element in elements) {
 		add(element)
 	}
-}
-
-expect fun IntArray.set(elements: IntArray)
-
-fun IntArray.set(elements: Array<Int>) {
-	set(elements.toIntArray())
-}
-
-fun IntArray.set(elements: List<Int>) {
-	set(elements.toIntArray())
 }
