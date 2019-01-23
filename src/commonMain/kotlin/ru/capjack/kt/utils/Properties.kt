@@ -3,18 +3,18 @@ package ru.capjack.kt.utils
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-object Delegates {
-	fun <T> observableChange(value: T, onChange: (T) -> Unit): ReadWriteProperty<Any?, T> {
-		return ChangeObservableProperty(value, onChange)
+object Properties {
+	fun <T> observable(value: T, observer: (T) -> Unit): ReadWriteProperty<Any?, T> {
+		return ObservableProperty(value, observer)
 	}
 	
-	fun <T> observableChange(value: T, onChange: () -> Unit): ReadWriteProperty<Any?, T> {
-		return ChangeObservableProperty(value) { onChange() }
+	fun <T> observable(value: T, observer: () -> Unit): ReadWriteProperty<Any?, T> {
+		return ObservableProperty(value) { observer() }
 	}
 	
-	private class ChangeObservableProperty<T>(
+	class ObservableProperty<T>(
 		private var value: T,
-		private var handler: (T) -> Unit
+		private var observer: (T) -> Unit
 	) : ReadWriteProperty<Any?, T> {
 		
 		override fun getValue(thisRef: Any?, property: KProperty<*>): T {
@@ -24,7 +24,7 @@ object Delegates {
 		override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
 			if (this.value != value) {
 				this.value = value
-				handler(value)
+				observer(value)
 			}
 		}
 	}
