@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation.Companion.MAIN_COMPI
 plugins {
 	kotlin("multiplatform") version "1.3.20"
 	id("nebula.release") version "9.2.0"
-	id("ru.capjack.capjack-bintray") version "0.14.1"
+	id("ru.capjack.capjack-bintray") version "0.15.0"
 }
 
 group = "ru.capjack.kt.utils"
