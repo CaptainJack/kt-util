@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation.Companion.MAIN_COMPILATION_NAME
 
 plugins {
-	kotlin("multiplatform") version "1.3.20"
+	kotlin("multiplatform") version "1.3.21"
 	id("nebula.release") version "9.2.0"
-	id("ru.capjack.capjack-bintray") version "0.15.0"
+	id("ru.capjack.capjack-bintray") version "0.16.0"
 }
 
 group = "ru.capjack.kt"
