@@ -1,9 +1,8 @@
 package ru.capjack.kt.utils
 
-import ru.capjack.kt.utils.collections.ConcurrentList
-
-open class CompositeCancelable(concurrent: Boolean) : Cancelable {
-	private val list: MutableList<Cancelable> = if (concurrent) arrayListOf() else ConcurrentList()
+open class CompositeCancelable(
+	private val list: MutableList<Cancelable> = arrayListOf()
+) : Cancelable {
 	
 	fun add(value: Cancelable) {
 		list.add(value)
