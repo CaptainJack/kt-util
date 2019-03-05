@@ -1,6 +1,6 @@
-package ru.capjack.kt.utils.random
+package ru.capjack.tool.kt.utils.random
 
-import ru.capjack.kt.utils.Supplier
+import ru.capjack.tool.kt.utils.Supplier
 import kotlin.random.Random
 
 class RandomIntByWeightSupplier(

@@ -1,6 +1,6 @@
-package ru.capjack.kt.utils.collections
+package ru.capjack.tool.kt.utils.collections
 
-import ru.capjack.kt.utils.Cancelable
+import ru.capjack.tool.kt.utils.Cancelable
 
 fun <E> MutableCollection<in E>.addAsCancelable(element: E): Cancelable {
 	add(element)

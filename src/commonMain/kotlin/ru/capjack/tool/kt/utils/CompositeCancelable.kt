@@ -1,4 +1,4 @@
-package ru.capjack.kt.utils
+package ru.capjack.tool.kt.utils
 
 open class CompositeCancelable(
 	private val list: MutableList<Cancelable> = arrayListOf()
