@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 
 plugins {
 	kotlin("multiplatform") version "1.3.21"
-	id("nebula.release") version "9.2.0"
-	id("ru.capjack.capjack-bintray") version "0.16.1"
+	id("nebula.release") version "10.0.1"
+	id("ru.capjack.bintray") version "0.17.0"
 }
 
 group = "ru.capjack.tool"

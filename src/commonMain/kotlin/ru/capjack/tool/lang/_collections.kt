@@ -1,4 +1,4 @@
-package ru.capjack.tool.kt.utils.collections
+package ru.capjack.tool.lang
 
 inline fun <T> Iterable<T>.sumByLong(selector: (T) -> Long): Long {
 	var sum = 0L
