@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.cli.common.arguments.K2JsArgumentConstants
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 
 plugins {
-	kotlin("multiplatform") version "1.3.21"
+	kotlin("multiplatform") version "1.3.31"
 	id("nebula.release") version "10.0.1"
 	id("ru.capjack.bintray") version "0.17.0"
 }

@@ -39,7 +39,16 @@ inline fun <T> T.runExcept(value: T, block: T.() -> T): T {
 	return if (this != value) block(this) else this
 }
 
-inline fun runIf(predicate: Boolean, block: () -> Unit): Boolean {
+inline fun lefIf(predicate: Boolean, block: () -> Boolean): Boolean {
+	return if (predicate) block() else predicate
+}
+
+inline fun alsoIf(predicate: Boolean, block: () -> Unit): Boolean {
 	if (predicate) block()
 	return predicate
+}
+
+inline infix fun Boolean.orElse(block: () -> Unit): Boolean {
+	if (!this) block()
+	return this
 }
