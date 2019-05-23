@@ -32,11 +32,11 @@ inline fun <T> T.letExcept(value: T, block: (T) -> T): T {
 
 
 inline fun <T> T.runFor(value: T, block: T.() -> T): T {
-	return if (this == value) block(this) else this
+	return if (this == value) block() else this
 }
 
 inline fun <T> T.runExcept(value: T, block: T.() -> T): T {
-	return if (this != value) block(this) else this
+	return if (this != value) block() else this
 }
 
 inline fun lefIf(predicate: Boolean, block: () -> Boolean): Boolean {
