@@ -31,13 +31,3 @@ kotlin {
 		}
 	}
 }
-
-afterEvaluate {
-	rootProject.extensions.getByType<PublishingExtension>().publications.forEach {
-		println(it.name)
-	}
-	
-	project.extensions.findByType<KotlinMultiplatformExtension>()!!.targets.forEach {
-		println(it.name + " " + it.publishable)
-	}
-}
