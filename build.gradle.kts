@@ -1,9 +1,9 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.gradle.api.publish.maven.internal.publication.MavenPublicationInternal
 
 plugins {
 	kotlin("multiplatform") version "1.3.40"
 	id("nebula.release") version "10.1.2"
-	id("ru.capjack.bintray") version "0.18.0"
+	id("ru.capjack.bintray") version "0.18.1"
 }
 
 group = "ru.capjack.tool"
