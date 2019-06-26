@@ -1,5 +1,7 @@
 package ru.capjack.tool.lang
 
+import kotlin.jvm.JvmName
+
 inline fun <T> T.applyFor(value: T, block: T.() -> Unit): T {
 	if (this == value) block()
 	return this
@@ -39,16 +41,34 @@ inline fun <T> T.runExcept(value: T, block: T.() -> T): T {
 	return if (this != value) block() else this
 }
 
+
+
 inline fun lefIf(predicate: Boolean, block: () -> Boolean): Boolean {
 	return if (predicate) block() else predicate
 }
+
+@JvmName("lefIfExt")
+inline fun Boolean.lefIf(block: () -> Boolean): Boolean {
+	return if (this) block() else false
+}
+
+inline fun Boolean.lefElse(block: () -> Boolean): Boolean {
+	return if (!this) block() else false
+}
+
 
 inline fun alsoIf(predicate: Boolean, block: () -> Unit): Boolean {
 	if (predicate) block()
 	return predicate
 }
 
-inline infix fun Boolean.orElse(block: () -> Unit): Boolean {
+@JvmName("alsoIfExt")
+inline fun Boolean.alsoIf(block: () -> Unit): Boolean {
+	if (this) block()
+	return this
+}
+
+inline fun Boolean.alsoElse(block: () -> Unit): Boolean {
 	if (!this) block()
 	return this
 }

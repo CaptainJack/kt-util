@@ -37,3 +37,9 @@ fun Byte.toHexString(chars: CharArray, offset: Int) {
 	chars[offset] = hexArray[v ushr 4]
 	chars[offset + 1] = hexArray[v and 0x0F]
 }
+
+fun Byte.toHexString(string: StringBuilder) {
+	val v = this.toInt().and(0xFF)
+	string.append(hexArray[v ushr 4])
+	string.append(hexArray[v and 0x0F])
+}
