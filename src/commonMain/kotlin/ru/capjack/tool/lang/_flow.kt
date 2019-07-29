@@ -42,7 +42,6 @@ inline fun <T> T.runExcept(value: T, block: T.() -> T): T {
 }
 
 
-
 inline fun lefIf(predicate: Boolean, block: () -> Boolean): Boolean {
 	return if (predicate) block() else predicate
 }
@@ -63,12 +62,17 @@ inline fun alsoIf(predicate: Boolean, block: () -> Unit): Boolean {
 }
 
 @JvmName("alsoIfExt")
-inline fun Boolean.alsoIf(block: () -> Unit): Boolean {
+inline infix fun Boolean.alsoIf(block: () -> Unit): Boolean {
 	if (this) block()
 	return this
 }
 
-inline fun Boolean.alsoElse(block: () -> Unit): Boolean {
+inline infix fun Boolean.alsoElse(block: () -> Unit): Boolean {
 	if (!this) block()
 	return this
+}
+
+
+fun <T> Boolean.make(onTrue: T, onFalse: T): T {
+	return if (this) onTrue else onFalse
 }

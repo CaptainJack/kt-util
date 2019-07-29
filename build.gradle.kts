@@ -1,7 +1,5 @@
-import org.gradle.api.publish.maven.internal.publication.MavenPublicationInternal
-
 plugins {
-	kotlin("multiplatform") version "1.3.40"
+	kotlin("multiplatform") version "1.3.41"
 	id("nebula.release") version "10.1.2"
 	id("ru.capjack.bintray") version "0.18.1"
 }
@@ -13,20 +11,20 @@ repositories {
 }
 
 kotlin {
+	
+	jvm().compilations.all { kotlinOptions.jvmTarget = "1.8" }
+	js()
+	
 	sourceSets {
-		commonMain.get().dependencies {
+		get("commonMain").dependencies {
 			implementation(kotlin("stdlib-common"))
 		}
-	}
-	
-	jvm().compilations {
-		get("main").defaultSourceSet.dependencies {
+		
+		get("jvmMain").dependencies {
 			implementation(kotlin("stdlib-jdk8"))
 		}
-	}
-	
-	js().compilations {
-		get("main").defaultSourceSet.dependencies {
+		
+		get("jsMain").dependencies {
 			implementation(kotlin("stdlib-js"))
 		}
 	}
