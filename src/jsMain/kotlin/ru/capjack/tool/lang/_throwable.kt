@@ -1,5 +1,9 @@
 package ru.capjack.tool.lang
 
+fun asThrowable(e: dynamic): Throwable {
+	return e as? Throwable ?: ErrorException(e)
+}
+
 val Throwable.stackTrace: String
 	get() {
 		try {
