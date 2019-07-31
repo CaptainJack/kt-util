@@ -1,5 +1,9 @@
 package ru.capjack.tool.lang
 
-fun Int.match(other: Int): Boolean {
-	return and(other) == other
+infix fun Int.has(bits: Int): Boolean {
+	return and(bits) == bits
+}
+
+infix fun Long.has(bits: Long): Boolean {
+	return and(bits) == bits
 }
