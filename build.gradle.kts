@@ -12,8 +12,12 @@ repositories {
 
 kotlin {
 	
-	jvm().compilations.all { kotlinOptions.jvmTarget = "1.8" }
-	js()
+	jvm {
+		compilations.all { kotlinOptions.jvmTarget = "1.8" }
+	}
+	js {
+		compilations.all { kotlinOptions.sourceMap = false }
+	}
 	
 	sourceSets {
 		get("commonMain").dependencies {
