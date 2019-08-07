@@ -1,7 +1,7 @@
 plugins {
 	kotlin("multiplatform") version "1.3.41"
-	id("nebula.release") version "10.1.2"
-	id("ru.capjack.bintray") version "0.18.1"
+	id("nebula.release") version "11.1.0"
+	id("ru.capjack.bintray") version "0.19.0"
 }
 
 group = "ru.capjack.tool"
@@ -16,7 +16,10 @@ kotlin {
 		compilations.all { kotlinOptions.jvmTarget = "1.8" }
 	}
 	js {
-		compilations.all { kotlinOptions.sourceMap = false }
+		compilations["main"].kotlinOptions {
+			sourceMap = true
+			sourceMapEmbedSources = "always"
+		}
 	}
 	
 	sourceSets {
