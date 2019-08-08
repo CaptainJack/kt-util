@@ -76,3 +76,9 @@ inline infix fun Boolean.alsoElse(block: () -> Unit): Boolean {
 fun <T> Boolean.make(onTrue: T, onFalse: T): T {
 	return if (this) onTrue else onFalse
 }
+
+
+inline fun <T> T.then(block: () -> Unit): T {
+	block()
+	return this
+}
