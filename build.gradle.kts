@@ -13,13 +13,10 @@ repositories {
 kotlin {
 	
 	jvm {
-		compilations.all { kotlinOptions.jvmTarget = "1.8" }
+		compilations.all { kotlinOptions.jvmTarget = "11" }
 	}
 	js {
-		compilations["main"].kotlinOptions {
-			sourceMap = true
-			sourceMapEmbedSources = "always"
-		}
+		compilations.all { kotlinOptions.sourceMap = false }
 		browser()
 	}
 	
