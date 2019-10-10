@@ -73,7 +73,8 @@ inline infix fun Boolean.alsoElse(block: () -> Unit): Boolean {
 }
 
 
-fun <T> Boolean.make(onTrue: T, onFalse: T): T {
+@Suppress("NOTHING_TO_INLINE")
+inline fun <T> Boolean.make(onTrue: T, onFalse: T): T {
 	return if (this) onTrue else onFalse
 }
 
