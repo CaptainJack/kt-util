@@ -13,24 +13,32 @@ actual fun Byte.toHexString(target: Appendable) {
 	target.append(HEX_CHARS[v and 0x0F])
 }
 
+
 actual fun Int.toHexString(): String {
-	return HEX_CHARS[this ushr 28] +
-		HEX_CHARS[this ushr 24 and 0x0F] +
-		HEX_CHARS[this ushr 20 and 0x0F] +
-		HEX_CHARS[this ushr 16 and 0x0F] +
-		HEX_CHARS[this ushr 12 and 0x0F] +
-		HEX_CHARS[this ushr 8 and 0x0F] +
-		HEX_CHARS[this ushr 4 and 0x0F] +
-		HEX_CHARS[this and 0x0F]
+	var s = ""
+	for (i in 7 downTo 0) {
+		s += HEX_CHARS[this ushr (i * 4) and 0x0F]
+	}
+	return s
 }
 
 actual fun Int.toHexString(target: Appendable) {
-	target.append(HEX_CHARS[this ushr 28])
-	target.append(HEX_CHARS[this ushr 24 and 0x0F])
-	target.append(HEX_CHARS[this ushr 20 and 0x0F])
-	target.append(HEX_CHARS[this ushr 16 and 0x0F])
-	target.append(HEX_CHARS[this ushr 12 and 0x0F])
-	target.append(HEX_CHARS[this ushr 8 and 0x0F])
-	target.append(HEX_CHARS[this ushr 4 and 0x0F])
-	target.append(HEX_CHARS[this and 0x0F])
+	for (i in 7 downTo 0) {
+		target.append(HEX_CHARS[this ushr (i * 4) and 0x0F])
+	}
+}
+
+
+actual fun Long.toHexString(): String {
+	var s = ""
+	for (i in 15 downTo 0) {
+		s += HEX_CHARS[(this ushr (i * 4)).toInt() and 0x0F]
+	}
+	return s
+}
+
+actual fun Long.toHexString(target: Appendable) {
+	for (i in 15 downTo 0) {
+		target.append(HEX_CHARS[(this ushr (i * 4)).toInt() and 0x0F])
+	}
 }

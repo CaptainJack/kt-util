@@ -6,6 +6,8 @@ expect fun Byte.toHexString(target: Appendable)
 expect fun Int.toHexString(): String
 expect fun Int.toHexString(target: Appendable)
 
+expect fun Long.toHexString(): String
+expect fun Long.toHexString(target: Appendable)
 
 fun ByteArray.toHexString(): String {
 	if (size == 0) {
