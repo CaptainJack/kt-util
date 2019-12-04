@@ -1,7 +1,7 @@
 package ru.capjack.tool.lang
 
 inline fun waitIf(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, check: () -> Boolean): Boolean {
-	return lefIf(check()) {
+	return check().lefIf {
 		waitIfImmediately(maxTimeoutMillis, checkTimeoutMillis, check)
 	}
 }

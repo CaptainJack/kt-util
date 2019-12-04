@@ -42,17 +42,12 @@ inline fun <T> T.runExcept(value: T, block: T.() -> T): T {
 }
 
 
-inline fun lefIf(predicate: Boolean, block: () -> Boolean): Boolean {
-	return if (predicate) block() else predicate
-}
-
-@JvmName("lefIfExt")
 inline fun Boolean.lefIf(block: () -> Boolean): Boolean {
 	return if (this) block() else false
 }
 
 inline fun Boolean.lefElse(block: () -> Boolean): Boolean {
-	return if (!this) block() else false
+	return if (this) true else block()
 }
 
 
