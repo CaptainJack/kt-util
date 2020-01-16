@@ -1,6 +1,6 @@
 plugins {
 	kotlin("multiplatform") version "1.3.61"
-	id("nebula.release") version "13.1.1"
+	id("nebula.release") version "14.0.2"
 	id("ru.capjack.bintray") version "1.0.0"
 }
 
@@ -13,7 +13,7 @@ repositories {
 kotlin {
 	
 	jvm {
-		compilations.all { kotlinOptions.jvmTarget = "11" }
+		compilations.all { kotlinOptions.jvmTarget = "1.8" }
 	}
 	js {
 		compilations.all { kotlinOptions.sourceMap = false }
