@@ -10,7 +10,3 @@ actual val EMPTY_FUNCTION_2: (Any?, Any?) -> Unit = EMPTY_FUNCTION
 actual val EMPTY_FUNCTION_3: (Any?, Any?, Any?) -> Unit = EMPTY_FUNCTION
 
 fun <F : Function<*>> emptyFunction(): F = EMPTY_FUNCTION.unsafeCast<F>()
-
-inline fun <T> jso(init: T.() -> Unit): T {
-	return js("{}").unsafeCast<T>().apply(init)
-}
