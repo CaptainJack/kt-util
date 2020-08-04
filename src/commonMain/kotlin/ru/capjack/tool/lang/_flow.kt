@@ -42,39 +42,30 @@ inline fun <T> T.runExcept(value: T, block: T.() -> T): T {
 }
 
 
-inline fun Boolean.lefIf(block: () -> Boolean): Boolean {
+inline infix fun Boolean.lefTrue(block: () -> Boolean): Boolean {
 	return if (this) block() else false
 }
 
-inline fun Boolean.lefElse(block: () -> Boolean): Boolean {
+inline infix fun Boolean.lefFalse(block: () -> Boolean): Boolean {
 	return if (this) true else block()
 }
 
-
-inline fun alsoIf(predicate: Boolean, block: () -> Unit): Boolean {
+inline fun alsoTrue(predicate: Boolean, block: () -> Unit): Boolean {
 	if (predicate) block()
 	return predicate
 }
 
-@JvmName("alsoIfExt")
-inline infix fun Boolean.alsoIf(block: () -> Unit): Boolean {
-	if (this) block()
-	return this
+inline fun alsoFalse(predicate: Boolean, block: () -> Unit): Boolean {
+	if (!predicate) block()
+	return predicate
 }
 
-inline infix fun Boolean.alsoElse(block: () -> Unit): Boolean {
-	if (!this) block()
-	return this
-}
+@JvmName("alsoTrueExt")
+inline infix fun Boolean.alsoTrue(block: () -> Unit) = alsoTrue(this, block)
+
+@JvmName("alsoFalseExt")
+inline infix fun Boolean.alsoElse(block: () -> Unit) = alsoFalse(this, block)
 
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun <T> Boolean.make(onTrue: T, onFalse: T): T {
-	return if (this) onTrue else onFalse
-}
-
-
-inline fun <T> T.then(block: () -> Unit): T {
-	block()
-	return this
-}
+inline fun <T> Boolean.make(onTrue: T, onFalse: T) = if (this) onTrue else onFalse
