@@ -1,20 +1,27 @@
 package ru.capjack.tool.lang
 
-inline fun waitIf(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, check: () -> Boolean): Boolean {
-	return check().lefIf {
-		waitIfImmediately(maxTimeoutMillis, checkTimeoutMillis, check)
-	}
-}
+inline fun waitUntil(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, condition: () -> Boolean) =
+	condition().lefFalse { waitUntilLater(maxTimeoutMillis, checkTimeoutMillis, condition) }
 
-inline fun waitIfImmediately(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, check: () -> Boolean): Boolean {
-	var b: Boolean
-	val time = System.currentTimeMillis()
-	val checkTimeoutMillisLong = checkTimeoutMillis.toLong()
-	val maxTimeoutMillisLong = maxTimeoutMillis.toLong()
+inline fun waitUntilLater(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, condition: () -> Boolean) =
+	waitForLater(maxTimeoutMillis, checkTimeoutMillis, true, condition)
+
+inline fun waitIf(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, condition: () -> Boolean) =
+	condition().lefTrue { waitIfLater(maxTimeoutMillis, checkTimeoutMillis, condition) }
+
+inline fun waitIfLater(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, condition: () -> Boolean) =
+	waitForLater(maxTimeoutMillis, checkTimeoutMillis, false, condition)
+
+
+inline fun waitForLater(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, expected: Boolean, condition: () -> Boolean): Boolean {
+	var result: Boolean
+	val checkTime = checkTimeoutMillis.toLong()
+	val maxTime = maxTimeoutMillis.toLong()
+	val startTime = System.currentTimeMillis()
 	do {
-		Thread.sleep(checkTimeoutMillisLong)
-		b = check()
+		Thread.sleep(checkTime)
+		result = condition()
 	}
-	while (b && System.currentTimeMillis() - time < maxTimeoutMillisLong)
-	return b
+	while (result != expected && System.currentTimeMillis() - startTime < maxTime)
+	return result
 }
