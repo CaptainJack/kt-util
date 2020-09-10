@@ -64,7 +64,7 @@ inline fun alsoFalse(predicate: Boolean, block: () -> Unit): Boolean {
 inline infix fun Boolean.alsoTrue(block: () -> Unit) = alsoTrue(this, block)
 
 @JvmName("alsoFalseExt")
-inline infix fun Boolean.alsoElse(block: () -> Unit) = alsoFalse(this, block)
+inline infix fun Boolean.alsoFalse(block: () -> Unit) = alsoFalse(this, block)
 
 
 @Suppress("NOTHING_TO_INLINE")
