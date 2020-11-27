@@ -10,10 +10,10 @@ class TestHex {
 		assertEquals("00", 0.toByte().toHexString())
 		assertEquals("01", 1.toByte().toHexString())
 		assertEquals("07", 0x07.toByte().toHexString())
-		assertEquals("0F", 0x0F.toByte().toHexString())
+		assertEquals("0f", 0x0F.toByte().toHexString())
 		assertEquals("80", 0x80.toByte().toHexString())
-		assertEquals("F0", 0xF0.toByte().toHexString())
-		assertEquals("FF", 0xFF.toByte().toHexString())
+		assertEquals("f0", 0xF0.toByte().toHexString())
+		assertEquals("ff", 0xFF.toByte().toHexString())
 	}
 	
 	@Test
@@ -24,28 +24,19 @@ class TestHex {
 		
 		values.forEach { it.toHexString(target) }
 		
-		assertEquals(
-			"00" +
-				"01" +
-				"07" +
-				"0F" +
-				"80" +
-				"F0" +
-				"FF",
-			target.toString()
-		)
+		assertEquals("00" + "01" + "07" + "0f" + "80" + "f0" + "ff", target.toString())
 	}
 	
 	@Test
 	fun int_to_hex_string() {
 		assertEquals("00000000", 0.toHexString())
 		assertEquals("00000001", 1.toHexString())
-		assertEquals("00007FFF", 0x7FFF.toHexString())
+		assertEquals("00007fff", 0x7FFF.toHexString())
 		assertEquals("00008000", 0x8000.toHexString())
-		assertEquals("7FFFFFFF", 0x7FFFFFFF.toHexString())
+		assertEquals("7fffffff", 0x7FFFFFFF.toHexString())
 		assertEquals("80000000", 0x80000000.toInt().toHexString())
-		assertEquals("FFFF0000", 0xFFFF0000.toInt().toHexString())
-		assertEquals("FFFFFFFF", 0xFFFFFFFF.toInt().toHexString())
+		assertEquals("ffff0000", 0xFFFF0000.toInt().toHexString())
+		assertEquals("ffffffff", 0xFFFFFFFF.toInt().toHexString())
 	}
 	
 	
@@ -60,12 +51,12 @@ class TestHex {
 		assertEquals(
 			"00000000" +
 				"00000001" +
-				"00007FFF" +
+				"00007fff" +
 				"00008000" +
-				"7FFFFFFF" +
+				"7fffffff" +
 				"80000000" +
-				"FFFF0000" +
-				"FFFFFFFF",
+				"ffff0000" +
+				"ffffffff",
 			target.toString()
 		)
 	}

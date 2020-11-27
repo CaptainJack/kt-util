@@ -1,13 +1,13 @@
 package ru.capjack.tool.lang
 
 inline fun waitUntil(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, condition: () -> Boolean) =
-	condition().lefFalse { waitUntilLater(maxTimeoutMillis, checkTimeoutMillis, condition) }
+	condition().letEx { waitUntilLater(maxTimeoutMillis, checkTimeoutMillis, condition) }
 
 inline fun waitUntilLater(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, condition: () -> Boolean) =
 	waitForLater(maxTimeoutMillis, checkTimeoutMillis, true, condition)
 
 inline fun waitIf(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, condition: () -> Boolean) =
-	condition().lefTrue { waitIfLater(maxTimeoutMillis, checkTimeoutMillis, condition) }
+	condition().letOn { waitIfLater(maxTimeoutMillis, checkTimeoutMillis, condition) }
 
 inline fun waitIfLater(maxTimeoutMillis: Int, checkTimeoutMillis: Int = 10, condition: () -> Boolean) =
 	waitForLater(maxTimeoutMillis, checkTimeoutMillis, false, condition)

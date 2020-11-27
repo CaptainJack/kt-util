@@ -2,69 +2,76 @@ package ru.capjack.tool.lang
 
 import kotlin.jvm.JvmName
 
-inline fun <T> T.applyFor(value: T, block: T.() -> Unit): T {
+inline fun <T> T.applyOn(value: T, block: T.() -> Unit): T {
 	if (this == value) block()
 	return this
 }
 
-inline fun <T> T.applyExcept(value: T, block: T.() -> Unit): T {
+inline fun <T> T.applyEx(value: T, block: T.() -> Unit): T {
 	if (this != value) block()
 	return this
 }
 
 
-inline fun <T> T.alsoFor(value: T, block: (T) -> Unit): T {
+inline fun <T> T.alsoOn(value: T, block: (T) -> Unit): T {
 	if (this == value) block(this)
 	return this
 }
 
-inline fun <T> T.alsoExcept(value: T, block: (T) -> Unit): T {
+inline fun <T> T.alsoEx(value: T, block: (T) -> Unit): T {
 	if (this != value) block(this)
 	return this
 }
 
 
-inline fun <T> T.letFor(value: T, block: (T) -> T): T {
+inline fun <T> T.letOn(value: T, block: (T) -> T): T {
 	return if (this == value) block(this) else this
 }
 
-inline fun <T> T.letExcept(value: T, block: (T) -> T): T {
+inline fun <T> T.letEx(value: T, block: (T) -> T): T {
 	return if (this != value) block(this) else this
 }
 
 
-inline fun <T> T.runFor(value: T, block: T.() -> T): T {
+inline fun <T> T.runOn(value: T, block: T.() -> T): T {
 	return if (this == value) block() else this
 }
 
-inline fun <T> T.runExcept(value: T, block: T.() -> T): T {
+inline fun <T> T.runEx(value: T, block: T.() -> T): T {
 	return if (this != value) block() else this
 }
 
 
-inline infix fun Boolean.lefTrue(block: () -> Boolean): Boolean {
-	return if (this) block() else false
+@JvmName("letOnBoolean")
+inline fun letOn(predicate: Boolean, block: () -> Boolean): Boolean {
+	return if (predicate) block() else false
 }
 
-inline infix fun Boolean.lefFalse(block: () -> Boolean): Boolean {
-	return if (this) true else block()
+@JvmName("letExBoolean")
+inline fun letEx(predicate: Boolean, block: () -> Boolean): Boolean {
+	return if (predicate) true else block()
 }
 
-inline fun alsoTrue(predicate: Boolean, block: () -> Unit): Boolean {
+inline infix fun Boolean.letOn(block: () -> Boolean) = letOn(this, block)
+
+inline infix fun Boolean.letEx(block: () -> Boolean) = letEx(this, block)
+
+
+@JvmName("alsoOnBoolean")
+inline fun alsoOn(predicate: Boolean, block: () -> Unit): Boolean {
 	if (predicate) block()
 	return predicate
 }
 
-inline fun alsoFalse(predicate: Boolean, block: () -> Unit): Boolean {
+@JvmName("alsoExBoolean")
+inline fun alsoEx(predicate: Boolean, block: () -> Unit): Boolean {
 	if (!predicate) block()
 	return predicate
 }
 
-@JvmName("alsoTrueExt")
-inline infix fun Boolean.alsoTrue(block: () -> Unit) = alsoTrue(this, block)
+inline infix fun Boolean.alsoOn(block: () -> Unit) = alsoOn(this, block)
 
-@JvmName("alsoFalseExt")
-inline infix fun Boolean.alsoFalse(block: () -> Unit) = alsoFalse(this, block)
+inline infix fun Boolean.alsoEx(block: () -> Unit) = alsoEx(this, block)
 
 
 @Suppress("NOTHING_TO_INLINE")
