@@ -42,36 +42,35 @@ inline fun <T> T.runEx(value: T, block: T.() -> T): T {
 }
 
 
-@JvmName("letOnBoolean")
-inline fun letOn(predicate: Boolean, block: () -> Boolean): Boolean {
+inline fun letIf(predicate: Boolean, block: () -> Boolean): Boolean {
 	return if (predicate) block() else false
 }
 
-@JvmName("letExBoolean")
-inline fun letEx(predicate: Boolean, block: () -> Boolean): Boolean {
+inline fun letElse(predicate: Boolean, block: () -> Boolean): Boolean {
 	return if (predicate) true else block()
 }
+@JvmName("letIfExt")
+inline infix fun Boolean.letIf(block: () -> Boolean) = letIf(this, block)
 
-inline infix fun Boolean.letOn(block: () -> Boolean) = letOn(this, block)
+@JvmName("letElseExt")
+inline infix fun Boolean.letElse(block: () -> Boolean) = letElse(this, block)
 
-inline infix fun Boolean.letEx(block: () -> Boolean) = letEx(this, block)
 
-
-@JvmName("alsoOnBoolean")
-inline fun alsoOn(predicate: Boolean, block: () -> Unit): Boolean {
+inline fun alsoIf(predicate: Boolean, block: () -> Unit): Boolean {
 	if (predicate) block()
 	return predicate
 }
 
-@JvmName("alsoExBoolean")
-inline fun alsoEx(predicate: Boolean, block: () -> Unit): Boolean {
+inline fun alsoElse(predicate: Boolean, block: () -> Unit): Boolean {
 	if (!predicate) block()
 	return predicate
 }
 
-inline infix fun Boolean.alsoOn(block: () -> Unit) = alsoOn(this, block)
+@JvmName("alsoIfExt")
+inline infix fun Boolean.alsoIf(block: () -> Unit) = alsoIf(this, block)
 
-inline infix fun Boolean.alsoEx(block: () -> Unit) = alsoEx(this, block)
+@JvmName("alsoElseExt")
+inline infix fun Boolean.alsoElse(block: () -> Unit) = alsoElse(this, block)
 
 
 @Suppress("NOTHING_TO_INLINE")
