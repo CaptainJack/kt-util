@@ -3,7 +3,7 @@ plugins {
 	kotlin("multiplatform") version "1.4.32"
 	`maven-publish`
 	id("nebula.release") version "15.3.1"
-	id("ru.capjack.reposit") version "0.2.0"
+	id("ru.capjack.reposit") version "0.3.0"
 }
 
 group = "ru.capjack.tool"
@@ -39,6 +39,6 @@ kotlin {
 
 publishing {
 	repositories {
-		mavenCapjackPrivate(reposit)
+		mavenCapjackPublic(reposit)
 	}
 }
