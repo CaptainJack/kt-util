@@ -1,6 +1,5 @@
-
 plugins {
-	kotlin("multiplatform") version "1.4.32"
+	kotlin("multiplatform") version "1.5.0"
 	id("ru.capjack.publisher") version "0.1.0"
 }
 
