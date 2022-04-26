@@ -78,3 +78,12 @@ inline infix fun Boolean.alsoFalse(block: () -> Unit) = alsoFalse(this, block)
 inline fun <T> Boolean.make(onTrue: T, onFalse: T) = if (this) onTrue else onFalse
 
 inline fun <T> Boolean.make(onTrue: () -> T, onFalse: () -> T) = if (this) onTrue() else onFalse()
+
+
+inline fun <reified T : Any> Any?.onIs(action: (T) -> Unit): Boolean {
+	return if (this is T) {
+		action(this)
+		true
+	}
+	else false
+}
