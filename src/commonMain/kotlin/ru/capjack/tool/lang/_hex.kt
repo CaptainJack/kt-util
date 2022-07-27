@@ -95,7 +95,7 @@ fun Long.toHexString(target: CharArray, offset: Int) {
 
 
 fun ByteArray.toHexString(): String {
-	if (size == 0) return ""
+	if (isEmpty()) return ""
 	val chars = CharArray(size * 2)
 	repeat(size) {
 		this[it].toHexString(chars, it * 2)
@@ -104,7 +104,7 @@ fun ByteArray.toHexString(): String {
 }
 
 fun ByteArray.toHexString(separator: Char): String {
-	if (size == 0) return ""
+	if (isEmpty()) return ""
 	val chars = CharArray(size * 3 - 1)
 	var i = 0
 	repeat(size) {
